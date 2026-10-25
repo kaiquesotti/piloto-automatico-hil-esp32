@@ -1,0 +1,33 @@
+cff-version: 1.2.0
+message: "Se este projeto contribuir para o seu trabalho, cite o artigo e o repositório."
+type: software
+title: "Plataforma Hardware-in-the-Loop para Controle Longitudinal (Piloto Automático) Não Linear com ESP32: Comparação MIL versus HIL"
+abstract: >-
+  Bancada hardware-in-the-loop (HIL) de baixo custo para o controle longitudinal
+  de velocidade de um veículo, com planta e controlador distribuídos em dois
+  ESP32. A planta integra um modelo longitudinal não linear com arrasto
+  aerodinâmico, resistência ao rolamento e inclinação da pista, acrescido de um
+  atuador de borboleta de primeira ordem e de ruído gaussiano de medição. O
+  controlador é um PID paralelo com filtro derivativo executado a 100 Hz, e a
+  malha fecha por UART2 com fios; a conexão Wi-Fi serve apenas à configuração e
+  à telemetria. O modelo Simulink (MIL) foi executado com os mesmos parâmetros e
+  comparado a três ensaios HIL (0%, 0,5% e 1% de ruído).
+authors:
+  - family-names: "Sotti Silva"
+    given-names: "Kaique de"
+    affiliation: "Universidade Federal de Lavras (UFLA) / Departamento de Automação (DAT)"
+    email: "kaique.silva@estudante.ufla.br"
+version: "1.0.0"
+date-released: "2026-10-25"
+url: "https://github.com/kaiquesotti/piloto-automatico-hil-esp32"
+repository-code: "https://github.com/kaiquesotti/piloto-automatico-hil-esp32"
+license: MIT
+keywords:
+  - "hardware-in-the-loop"
+  - "HIL"
+  - "MIL"
+  - "ESP32"
+  - "controle longitudinal"
+  - "piloto automático"
+  - "PID"
+  - "sistemas embarcados de tempo real"

@@ -1,0 +1,34 @@
+# -----------------------------------------------------------------------------
+#  Credenciais locais
+# -----------------------------------------------------------------------------
+#  Copie secrets.example.h para secrets.h e preencha com os dados da sua rede.
+#  O arquivo secrets.h nunca deve ser versionado.
+firmware/planta/secrets.h
+
+# -----------------------------------------------------------------------------
+#  MATLAB / Simulink
+# -----------------------------------------------------------------------------
+#  slprj/ e *.slxc sao caches de compilacao gerados pelo Simulink.
+matlab/slprj/
+*.slxc
+*.autosave
+*.asv
+*.m~
+*.mdl~
+
+# -----------------------------------------------------------------------------
+#  Arduino / PlatformIO
+# -----------------------------------------------------------------------------
+build/
+.pio/
+.pioenvs/
+.piolibdeps/
+
+# -----------------------------------------------------------------------------
+#  Sistema operacional e editores
+# -----------------------------------------------------------------------------
+Thumbs.db
+desktop.ini
+.DS_Store
+.vscode/
+.idea/
