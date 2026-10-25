@@ -1,0 +1,40 @@
+# =============================================================================
+#  .gitignore — o que NÃO deve ser versionado
+# =============================================================================
+#
+#  Este arquivo NÃO é sobre a senha que já foi removida do repositório.
+#  Ele evita que ela volte por acidente:
+#
+#  - "secrets.h" é o arquivo LOCAL com o SSID e a senha da sua rede.
+#    Ele existe apenas na sua máquina; o repositório publica somente o
+#    modelo "secrets.example.h".
+#  - "slprj/" e "*.slxc" são caches gerados pelo Simulink a cada execução.
+#  - "build/", ".pio/" etc. são artefatos de compilação do Arduino.
+#
+#  Sem estas regras, um "git add ." poderia publicar suas credenciais e
+#  encher o repositório com arquivos gerados.
+# =============================================================================
+
+# Credenciais locais (o modelo público é secrets.example.h)
+firmware/planta/secrets.h
+
+# MATLAB / Simulink
+matlab/slprj/
+*.slxc
+*.autosave
+*.asv
+*.m~
+*.mdl~
+
+# Arduino / PlatformIO
+build/
+.pio/
+.pioenvs/
+.piolibdeps/
+
+# Sistema operacional e editores
+Thumbs.db
+desktop.ini
+.DS_Store
+.vscode/
+.idea/

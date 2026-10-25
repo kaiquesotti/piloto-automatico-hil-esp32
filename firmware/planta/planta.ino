@@ -48,7 +48,7 @@
 #include <cstring>
 
 #include "index_html.h"
-#include "secrets.h"  // credenciais locais (nao versionado); copie secrets.example.h
+#include "secrets.h"  // arquivo local (não versionado); copie secrets.example.h para secrets.h
 
 /* ===========================================================================
  *  Configuracao

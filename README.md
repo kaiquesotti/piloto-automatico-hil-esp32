@@ -130,20 +130,28 @@ As ligações são cruzadas (TX → RX). A figura 4 do artigo detalha a montagem
 - Nenhuma biblioteca externa: `WiFi`, `WebServer` e `esp_system` fazem parte do core do ESP32.
 - Velocidade do Monitor Serial: **115 200 bit/s**.
 
-### 1. Configurar as credenciais Wi-Fi
+### 1. Configurar as credenciais Wi-Fi (obrigatório)
+
+O sketch da planta precisa de um arquivo **`secrets.h`** com o nome e a senha da sua rede. Esse arquivo **não existe no repositório** — por segurança, só o modelo [`secrets.example.h`](firmware/planta/secrets.example.h) é publicado. Crie o seu a partir do modelo:
 
 ```bash
 cp firmware/planta/secrets.example.h firmware/planta/secrets.h
 ```
 
-Edite `firmware/planta/secrets.h`:
+Depois abra `firmware/planta/secrets.h` e substitua os dois valores:
 
 ```cpp
-#define WIFI_SSID "NOME_DA_REDE"
-#define WIFI_PASSWORD "SENHA_DA_REDE"
+#define WIFI_SSID "NOME_DA_REDE"       // nome exato da rede (2,4 GHz)
+#define WIFI_PASSWORD "SENHA_DA_REDE"  // senha da rede
 ```
 
-O arquivo `secrets.h` está listado no `.gitignore` e não é versionado. Sem ele, o sketch da planta não compila (a inclusão é intencional, para evitar publicar credenciais por engano).
+O `secrets.h` fica apenas na sua máquina. O `.gitignore` impede que ele seja enviado ao GitHub — inclusive em um `git add .` futuro.
+
+> [!TIP]
+> Se você esquecer este passo, a compilação para com `secrets.h: No such file or directory`. É esperado: basta criar o arquivo como acima. O modelo `secrets.example.h` tem o passo a passo completo no cabeçalho.
+
+> [!NOTE]
+> A placa entra na rede como **estação (STA)**. O computador que vai abrir a página web precisa estar na mesma rede, e o ESP32-WROOM-32 opera apenas em **2,4 GHz** (redes de 5 GHz não são suportadas).
 
 ### 2. Gravar o ESP32 da planta
 
@@ -172,6 +180,17 @@ O ESP32 do controle não usa Wi-Fi: ele apenas recebe a configuração e a veloc
 ![Interface web da planta](docs/img/web_pagina.png)
 
 A página permite ajustar os parâmetros da planta (`m`, `g`, `ρ`, `A`, `Cd`, `uw`, `f`), do atuador (`Ka`, `τa`), do ruído (`σ` em % de |u|), do PID (`Kp`, `Ki`, `Kd`, `N`), a condição inicial (`u0`), a referência (degrau) e o perfil θ(t). Os gráficos mostram r × u, a força de controle Fx e a inclinação θ em tempo real.
+
+### 5. Se algo não funcionar
+
+| Sintoma | Causa provável | Solução |
+|---|---|---|
+| `secrets.h: No such file or directory` | o arquivo local de credenciais não foi criado | copie `secrets.example.h` para `secrets.h` (passo 1) |
+| Monitor Serial mostra `Wi-Fi nao conectou` | rede errada, rede de 5 GHz ou fora de alcance | confira `secrets.h`; use uma rede 2,4 GHz |
+| A página web não abre | PC e placa em redes diferentes | conecte o PC à mesma rede e use o IP exibido no Monitor Serial |
+| Os gráficos não atualizam | ensaio parado | clique em **Iniciar** e confira `running` em `/status` |
+| A velocidade não segue a referência | UART mal ligada ou controle sem alimentação | confira TX/RX cruzados e GND comum; veja o Monitor Serial das duas placas |
+| O CSV não baixa | nenhuma amostra registrada | inicie um ensaio, aguarde alguns segundos e clique em **Baixar CSV** |
 
 ---
 
