@@ -22,7 +22,7 @@
  *  O modelo roda em TEMPO REAL, sem "stop time": so para quando voce manda.
  *
  *  Este ESP32 tambem:
- *    - entra na rede Wi-Fi AP_Aurora (STA) e hospeda a PAGINA WEB;
+ *    - entra na rede Wi-Fi definida em secrets.h (STA) e hospeda a PAGINA WEB;
  *    - ajusta parametros, condicao inicial, referencia e o SINAL Theta
  *      (editor de pontos + gerador de rampa);
  *    - inicia/para/limpa a simulacao;
